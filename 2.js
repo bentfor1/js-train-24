@@ -2,6 +2,35 @@ console.log("Завдання: 2 ==============================");
 
 // Створюємо функцію task2
 function task2() {
+  function promise1() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("Проміс 1 виконано");
+      }, 2000);
+    });
+  }
+
+  // Створюємо функцію promise2
+  function promise2() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("Проміс 2 виконано");
+      }, 5000);
+    });
+  }
+
+  // Використовуємо Promise.race для визначення, який проміс виконується першим.
+  // Метод повертає новий проміс, який вирішується або відхиляється негайно після розв'язання або відхилення будь-якого з промісів у переданому списку.
+  Promise.race([promise1(), promise2()])
+    .then((result) => {
+      console.log("Результат:", result);
+    })
+    .catch((error) => {
+      console.error("Помилка:", error.message);
+    })
+    .finally(() => {
+      console.log("Завдання 2 завершено");
+    });
   // Створюємо функцію promise1
   // Повертаємо новий проміс
   // Використовуємо setTimeout для імітації асинхронної операції, яка завершується через 2 секунди.
